@@ -2,10 +2,7 @@ import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, Pressable, Text } from "react-native";
 import { useFonts } from "expo-font";
-
-export const Menu = () => {
-  return <Text style={styles.text}>Hello</Text>;
-};
+import { Menu } from "./components";
 
 export default function App() {
   const [viewSplash, toggleViewSplash] = useState<boolean>(true);
