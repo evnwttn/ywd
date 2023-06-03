@@ -9,13 +9,13 @@ export const Yn = ({ setDisplayComponent }: YnProps) => {
   const yn: string[] = ["yes", "no"];
   const ynDisplay: string = yn[Math.floor(Math.random() * yn.length)];
 
-  const onPress = () => {
+  const toggleMenu = () => {
     setDisplayComponent("");
   };
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => onPress()}>
+      <Pressable onPress={() => toggleMenu()}>
         <Text style={styles.text}>{ynDisplay}</Text>
       </Pressable>
     </View>

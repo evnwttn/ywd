@@ -6,19 +6,19 @@ interface MenuProps {
 }
 
 export const Menu = ({ setDisplayComponent }: MenuProps) => {
-  const onPress = (prompt: string) => {
+  const toggleComponent = (prompt: string) => {
     setDisplayComponent(prompt);
   };
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => onPress("Y/N")}>
+      <Pressable onPress={() => toggleComponent("Y/N")}>
         <Text style={styles.text}>[Y/N]</Text>
       </Pressable>
-      <Pressable onPress={() => onPress("IN*")}>
+      <Pressable onPress={() => toggleComponent("IN*")}>
         <Text style={styles.text}>[IN*]</Text>
       </Pressable>
-      <Pressable onPress={() => onPress("OUT")}>
+      <Pressable onPress={() => toggleComponent("OUT")}>
         <Text style={styles.text}>[OUT]</Text>
       </Pressable>
     </View>

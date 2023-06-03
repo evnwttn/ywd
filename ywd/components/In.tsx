@@ -6,22 +6,46 @@ interface InProps {
 }
 
 export const In = ({ setDisplayComponent }: InProps) => {
-  const [textInput, onChangeTextInput] = useState<string>("");
+  const [inputText, onInputText] = useState<string>("");
+  const [inputArray, setInputArray] = useState<string[]>([]);
+  const [inputOutput, setInputOutput] = useState<string | undefined>();
+
+  const onSubmitInput = () => {
+    const updatedArray = [...inputArray, inputText];
+    setInputArray(updatedArray);
+    onInputText("");
+  };
+
+  const onSubmitArray = () => {
+    setInputOutput(inputArray[Math.floor(Math.random() * inputArray.length)]);
+  };
+
+  const toggleMenu = () => {
+    setDisplayComponent("");
+  };
 
   return (
     <View style={styles.container}>
-      <Pressable style={styles.plus} onPress={() => console.log(textInput)}>
-        <Text style={styles.text}>[GO]</Text>
-      </Pressable>
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeTextInput}
-        value={textInput}
-        placeholder="..."
-      />
-      <Pressable onPress={() => console.log(textInput)}>
-        <Text style={styles.text}>[++]</Text>
-      </Pressable>
+      {inputOutput ? (
+        <Pressable style={styles.plus} onPress={toggleMenu}>
+          <Text style={styles.text}>{inputOutput}</Text>
+        </Pressable>
+      ) : (
+        <>
+          <Pressable style={styles.plus} onPress={onSubmitArray}>
+            <Text style={styles.text}>[GO]</Text>
+          </Pressable>
+          <TextInput
+            style={styles.input}
+            placeholder="..."
+            onChangeText={onInputText}
+            value={inputText}
+          />
+          <Pressable onPress={onSubmitInput}>
+            <Text style={styles.text}>[++]</Text>
+          </Pressable>
+        </>
+      )}
     </View>
   );
 };
