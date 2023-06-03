@@ -1,24 +1,44 @@
-import { View, Pressable, Text, StyleSheet } from "react-native";
+import { useState, Dispatch, SetStateAction } from "react";
+import { View, TextInput, Pressable, Text, StyleSheet } from "react-native";
 
 interface OutProps {
-  setDisplayComponent: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setDisplayComponent: Dispatch<SetStateAction<string | undefined>>;
 }
 
 export const Out = ({ setDisplayComponent }: OutProps) => {
-  const onPress = (prompt: string) => {
-    console.log(prompt);
+  const [location, setLocation] = useState<string>("");
+
+  const onSubmitLocation = () => {
+    console.log(location);
   };
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => onPress("Out")}>
-        <Text style={styles.text}>Out</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="..."
+        onChangeText={setLocation}
+        value={location}
+      />
+      <Pressable onPress={onSubmitLocation}>
+        <Text style={styles.text}>[GO]</Text>
       </Pressable>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  input: {
+    width: 300,
+    padding: 2,
+    fontFamily: "Saira-Black",
+    textTransform: "uppercase",
+    fontSize: 44,
+    color: "#3E2952",
+    borderColor: "#3E2952",
+    borderWidth: 7,
+    transform: [{ skewX: "15deg" }],
+  },
   container: {
     flex: 1,
     backgroundImage: "linear-gradient(#DF8B60, #BC859C)",
