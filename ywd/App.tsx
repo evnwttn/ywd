@@ -2,13 +2,15 @@ import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, Pressable, Text } from "react-native";
 import { useFonts } from "expo-font";
-import { Menu } from "./components";
+import { Menu, Yn, In, Out } from "./components";
 
 export default function App() {
   const [viewSplash, toggleViewSplash] = useState<boolean>(true);
+  const [displayComponent, setDisplayComponent] = useState<string>();
 
   const [fontsLoaded] = useFonts({
     "Saira-BlackItalic": require("./assets/fonts/Saira-BlackItalic.ttf"),
+    "Saira-Black": require("./assets/fonts/Saira-Black.ttf"),
   });
 
   const onPress = () => {
@@ -21,8 +23,14 @@ export default function App() {
         <Pressable style={styles.button} onPress={onPress}>
           <Text style={styles.text}>ywd</Text>
         </Pressable>
+      ) : displayComponent === "Y/N" ? (
+        <Yn setDisplayComponent={setDisplayComponent} />
+      ) : displayComponent === "IN*" ? (
+        <In setDisplayComponent={setDisplayComponent} />
+      ) : displayComponent === "OUT" ? (
+        <Out setDisplayComponent={setDisplayComponent} />
       ) : (
-        <Menu />
+        <Menu setDisplayComponent={setDisplayComponent} />
       )}
 
       <StatusBar style="auto" />

@@ -1,25 +1,22 @@
 import { Dispatch, SetStateAction } from "react";
 import { View, Pressable, Text, StyleSheet } from "react-native";
 
-interface MenuProps {
+interface YnProps {
   setDisplayComponent: Dispatch<SetStateAction<string | undefined>>;
 }
 
-export const Menu = ({ setDisplayComponent }: MenuProps) => {
-  const onPress = (prompt: string) => {
-    setDisplayComponent(prompt);
+export const Yn = ({ setDisplayComponent }: YnProps) => {
+  const yn: string[] = ["yes", "no"];
+  const ynDisplay: string = yn[Math.floor(Math.random() * yn.length)];
+
+  const onPress = () => {
+    setDisplayComponent("");
   };
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => onPress("Y/N")}>
-        <Text style={styles.text}>[Y/N]</Text>
-      </Pressable>
-      <Pressable onPress={() => onPress("IN*")}>
-        <Text style={styles.text}>[IN*]</Text>
-      </Pressable>
-      <Pressable onPress={() => onPress("OUT")}>
-        <Text style={styles.text}>[OUT]</Text>
+      <Pressable onPress={() => onPress()}>
+        <Text style={styles.text}>{ynDisplay}</Text>
       </Pressable>
     </View>
   );
