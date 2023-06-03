@@ -1,3 +1,4 @@
+import { API_KEY, ORG_ID } from "@env";
 import { useState, Dispatch, SetStateAction } from "react";
 import { View, TextInput, Pressable, Text, StyleSheet } from "react-native";
 
@@ -9,7 +10,8 @@ export const Out = ({ setDisplayComponent }: OutProps) => {
   const [location, setLocation] = useState<string>("");
 
   const onSubmitLocation = () => {
-    console.log(location);
+    console.log(API_KEY);
+    console.log(ORG_ID);
   };
 
   return (
